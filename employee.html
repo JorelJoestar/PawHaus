@@ -77,6 +77,7 @@
       font-size: 15px;
       padding: 6px 10px;
       border-radius: 8px;
+      cursor: pointer;
     }
 
     nav a:hover { color: #fff3e0; background: rgba(0,0,0,0.05); }
@@ -85,8 +86,7 @@
       padding-top: calc(var(--header-h) + var(--nav-h) + 20px);
       padding-bottom: calc(var(--footer-h) + 20px);
       max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto;
       padding-left: 20px;
       padding-right: 20px;
     }
@@ -117,6 +117,16 @@
       font-size: 14px;
     }
 
+    .forgot-link {
+      display: inline-block;
+      font-size: 13px;
+      color: #8b5e3b;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    .forgot-link:hover { color: #70492c; }
+
     .actions { display:flex; gap:12px; align-items:center; margin-top:8px; }
     .btn {
       background-color: #8b5e3b;
@@ -140,11 +150,7 @@
     }
     .btn-secondary:hover { background:#b07b3f; color:#fff; }
 
-    .msg {
-      margin-top: 10px;
-      color: #5a3c1c;
-      font-weight: 600;
-    }
+    .msg { margin-top: 10px; color: #5a3c1c; font-weight: 600; }
 
     table {
       width: 100%;
@@ -186,6 +192,26 @@
       z-index: 1200;
     }
 
+    #contact-admin {
+      display: none;
+      background-color: rgba(255,255,255,0.95);
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    #contact-admin h3 {
+      color: #5a3c1c;
+      margin-top: 0;
+    }
+
+    #contact-admin p {
+      font-size: 15px;
+      color: #3e2a1a;
+    }
+
     @media (max-width: 860px) {
       nav { gap: 12px; }
       .login-form { max-width: 100%; }
@@ -200,84 +226,71 @@
     <div class="brand">PawHaus — Employee Portal</div>
   </header>
 
-  <nav aria-label="Main navigation">
+  <nav>
     <a href="index.html">🏠 Home</a>
-    <a href="#login">🔐 Login</a>
-    <a href="#dashboard">📋 Dashboard</a>
-    <a href="#contact">📞 Contact Admin</a>
+    <a href="#login-panel">🔐 Login</a>
+    <a href="#dashboard-panel">📋 Dashboard</a>
+    <a id="contactBtn">📞 Contact Admin</a>
   </nav>
 
   <main>
-    <section id="login-panel" class="panel" aria-labelledby="login-heading">
-      <h2 id="login-heading">Employee Login</h2>
-
+    <section id="login-panel" class="panel">
+      <h2>Employee Login</h2>
       <form id="loginForm" class="login-form" novalidate>
         <div class="input-row">
           <label for="username">Username</label>
-          <input id="username" name="username" type="text" autocomplete="username" required />
+          <input id="username" name="username" type="text" required />
         </div>
-
         <div class="input-row">
           <label for="password">Password</label>
-          <input id="password" name="password" type="password" autocomplete="current-password" required />
+          <input id="password" name="password" type="password" required />
+          <div class="forgot-link">Forgot Password?</div>
         </div>
-
         <div class="actions">
           <button id="loginSubmit" class="btn" type="submit">Login</button>
           <button id="demoBtn" class="btn-secondary" type="button">Demo Credentials</button>
-          <div id="loginMsg" class="msg" aria-live="polite"></div>
+          <div id="loginMsg" class="msg"></div>
         </div>
       </form>
     </section>
 
-    <section id="dashboard-panel" class="panel" style="display:none;" aria-labelledby="dashboard-heading">
-      <h2 id="dashboard-heading">Welcome, <span id="employee-name">Employee</span>!</h2>
-
+    <section id="dashboard-panel" class="panel" style="display:none;">
+      <h2>Welcome, <span id="employee-name">Employee</span>!</h2>
       <h3 style="margin-top:8px;color:#5a3c1c;">📋 Available Jobs</h3>
-      <table aria-describedby="jobs-desc">
+      <table>
         <thead>
-          <tr>
-            <th>Client</th><th>Service</th><th>Date</th><th>Location</th><th>Status</th><th>Action</th>
-          </tr>
+          <tr><th>Client</th><th>Service</th><th>Date</th><th>Location</th><th>Status</th><th>Action</th></tr>
         </thead>
         <tbody id="jobs-body">
           <tr>
-            <td>Lance Nathaniel D Orlina</td>
-            <td>Pet Grooming</td>
-            <td>June 3, 2025</td>
-            <td>Makati City</td>
+            <td>Lance Nathaniel D Orlina</td><td>General Cleaning</td><td>June 3, 2025</td><td>Makati City</td>
             <td class="status-cell" id="status-1">Available</td>
-            <td>
-              <button class="small-btn" data-job="1">Accept</button>
-              <button class="small-btn danger" data-job="1">Decline</button>
-            </td>
+            <td><button class="small-btn" data-job="1">Accept</button><button class="small-btn danger" data-job="1">Decline</button></td>
           </tr>
           <tr>
-            <td>Frenzie Pagdilao</td>
-            <td>Bath & Blow Dry</td>
-            <td>June 4–5, 2025</td>
-            <td>Quezon City</td>
+            <td>Frenzie Pagdilao</td><td>Nanny (Whole-Day)</td><td>June 4–5, 2025</td><td>Quezon City</td>
             <td class="status-cell" id="status-2">Available</td>
-            <td>
-              <button class="small-btn" data-job="2">Accept</button>
-              <button class="small-btn danger" data-job="2">Decline</button>
-            </td>
+            <td><button class="small-btn" data-job="2">Accept</button><button class="small-btn danger" data-job="2">Decline</button></td>
           </tr>
         </tbody>
       </table>
 
       <h3 style="margin-top:20px;color:#5a3c1c;">🗓️ Weekly Schedule</h3>
       <table>
-        <thead>
-          <tr><th>Date</th><th>Assigned To</th><th>Service</th><th>Status</th><th>Payment</th></tr>
-        </thead>
+        <thead><tr><th>Date</th><th>Assigned To</th><th>Service</th><th>Status</th><th>Payment</th></tr></thead>
         <tbody>
-          <tr><td>June 1, 2025</td><td>Chriselle Demerin</td><td>Weekly Cleaning</td><td>Confirmed</td><td>PAID</td></tr>
-          <tr><td>June 2, 2025</td><td>Yuri Matute</td><td>Monthly Cleaning</td><td>Pending</td><td>NOT PAID</td></tr>
+          <tr><td>June 1, 2025</td><td>Chriselle Demerin</td><td>Deep Cleaning</td><td>Confirmed</td><td>PAID</td></tr>
+          <tr><td>June 2, 2025</td><td>Yuri Matute</td><td>Infant Care</td><td>Pending</td><td>NOT PAID</td></tr>
         </tbody>
       </table>
 
       <button id="logoutBtn" class="logout-btn" type="button">Logout</button>
+    </section>
+
+    <section id="contact-admin" class="panel">
+      <h3>Contact Admin</h3>
+      <p>For any work-related issues, scheduling, or payment concerns, please contact the admin team directly:</p>
+      <p>Email: <strong>admin@pawhaus.ph</strong><br>Phone: <strong>0912-345-6789</strong><br>Facebook: <strong>fb.com/pawhausadmin</strong></p>
     </section>
   </main>
 
@@ -289,7 +302,6 @@
     (function () {
       const VALID_USER = 'employee';
       const VALID_PASS = 'paw123';
-
       const form = document.getElementById('loginForm');
       const userEl = document.getElementById('username');
       const passEl = document.getElementById('password');
@@ -299,8 +311,9 @@
       const employeeNameSpan = document.getElementById('employee-name');
       const logoutBtn = document.getElementById('logoutBtn');
       const demoBtn = document.getElementById('demoBtn');
-
       const jobsBody = document.getElementById('jobs-body');
+      const contactBtn = document.getElementById('contactBtn');
+      const contactAdmin = document.getElementById('contact-admin');
 
       function showMsg(text, isError) {
         msgEl.textContent = text;
@@ -308,15 +321,13 @@
       }
 
       function handleLogin(evt) {
-        if (evt) evt.preventDefault();
-        const user = (userEl.value || '').trim();
-        const pass = (passEl.value || '').trim();
-
+        evt.preventDefault();
+        const user = userEl.value.trim();
+        const pass = passEl.value.trim();
         if (!user) { showMsg('Enter username'); userEl.focus(); return; }
         if (!pass) { showMsg('Enter password'); passEl.focus(); return; }
-
         if (user === VALID_USER && pass === VALID_PASS) {
-          showMsg('Login successful ✅', false);
+          showMsg('Login successful ✅');
           loginPanel.style.display = 'none';
           dashboard.style.display = 'block';
           employeeNameSpan.textContent = user;
@@ -338,19 +349,16 @@
       demoBtn.addEventListener('click', function () {
         userEl.value = VALID_USER;
         passEl.value = VALID_PASS;
-        showMsg('Demo credentials filled. Click Login.', false);
+        showMsg('Demo credentials filled. Click Login.');
         userEl.focus();
       });
 
       form.addEventListener('submit', handleLogin);
-
       logoutBtn.addEventListener('click', handleLogout);
 
       jobsBody.addEventListener('click', function (e) {
         const btn = e.target.closest('button');
         if (!btn) return;
-        const jobId = btn.dataset.job;
-        if (!jobId) return;
         const row = btn.closest('tr');
         const statusCell = row.querySelector('.status-cell');
         if (btn.classList.contains('danger')) {
@@ -360,14 +368,15 @@
           statusCell.textContent = 'Accepted';
           statusCell.style.color = '#1a7f1a';
         }
-        // remove action buttons after choice
-        const actionTd = btn.parentElement;
-        actionTd.innerHTML = '—';
+        btn.parentElement.innerHTML = '—';
+      });
+
+      contactBtn.addEventListener('click', () => {
+        contactAdmin.style.display = contactAdmin.style.display === 'none' || contactAdmin.style.display === '' ? 'block' : 'none';
+        if (contactAdmin.style.display === 'block') contactAdmin.scrollIntoView({ behavior: 'smooth' });
       });
 
       userEl.focus();
-
-      window._pwdebug = { handleLogin, handleLogout };
     })();
   </script>
 </body>
