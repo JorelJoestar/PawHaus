@@ -1,209 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Employee Portal - Maid For You</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="logo.jpg" href="test.png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Portal | PawHaus</title>
+  <link rel="icon" type="image/png" href="test.png">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f0f6ff;
-      color: #1a1a1a;
+      background-color: #f7ede2;
+      color: #3e2a1a;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      overflow-x: hidden;
     }
+
     header {
-      background-color: #cce0ff;
+      background-color: #b37a45;
       padding: 20px;
       display: flex;
       align-items: center;
       gap: 20px;
-      border-bottom: 3px solid #99c2ff;
+      border-bottom: 3px solid #8c6239;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
     }
+
     header img {
-      height: 80px;
-      border: 1px solid #3366cc;
+      height: 70px;
+      border-radius: 10px;
+      border: 2px solid #8c6239;
     }
-    h1 {
-      color: #003399;
+
+    header h1 {
+      color: #fff3e0;
       margin: 0;
+      font-size: 1.8em;
     }
+
     nav {
-      background-color: #99c2ff;
+      background-color: #d1a46d;
       padding: 10px 20px;
       text-align: center;
-      border-bottom: 2px solid #6699cc;
+      border-bottom: 2px solid #a67c52;
+      position: fixed;
+      top: 100px;
+      left: 0;
+      right: 0;
+      z-index: 999;
     }
+
     nav a {
-      margin: 0 10px;
-      color: #003366;
+      margin: 0 30px;
+      color: #3e2a1a;
       text-decoration: none;
       font-weight: bold;
     }
+
     nav a:hover {
       text-decoration: underline;
     }
-    section {
-      padding: 40px 60px;
-      background-color: #ffffff;
+
+    main {
+      margin-top: 180px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 60px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
-    section h2, section h3 {
-      color: #003366;
+
+    h2 {
+      color: #5a3c1c;
+      text-align: center;
     }
+
+    .login-section, .dashboard {
+      text-align: center;
+    }
+
+    input[type="text"], input[type="password"] {
+      padding: 8px;
+      margin: 8px 0;
+      width: 100%;
+      max-width: 300px;
+      border: 1px solid #a67c52;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #8b5e3b;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #70492c;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
-      background-color: #ffffff;
+      margin-top: 30px;
+      background-color: #fffaf5;
+      border-radius: 10px;
+      overflow: hidden;
     }
+
     th, td {
-      border: 1px solid #cce0ff;
-      padding: 10px;
-      text-align: left;
-    }
-    th {
-      background-color: #dceaff;
-    }
-    .button, .action-button {
-      display: inline-block;
-      background-color: #6699cc;
-      color: white;
-      padding: 5px 10px;
-      text-decoration: none;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-right: 5px;
-    }
-    .button:hover, .action-button:hover {
-      background-color: #336699;
-    }
-    .prompt {
+      border: 1px solid #d1a46d;
+      padding: 12px;
       text-align: center;
-      margin-top: 100px;
     }
-    input[type="password"], input[type="text"] {
-      padding: 10px;
-      width: 250px;
-      margin-bottom: 10px;
+
+    th {
+      background-color: #b37a45;
+      color: #fff3e0;
     }
-    #portal-content {
-      display: none;
+
+    tr:nth-child(even) {
+      background-color: #f9efe5;
     }
-  </style>
-  <script>
-    function unlockPortal() {
-      const password = document.getElementById('password').value;
-      const name = document.getElementById('employee-name').value;
-      if (password === '202450576' && name !== '') {
-        document.getElementById('prompt-form').style.display = 'none';
-        document.getElementById('employee-name-display').textContent = name;
-        document.getElementById('portal-content').style.display = 'block';
-      } else {
-        alert('Please enter the correct password and your name.');
+
+    .logout-btn {
+      background-color: #d9534f;
+      margin-top: 30px;
+    }
+
+    .logout-btn:hover {
+      background-color: #b13f3b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #b37a45;
+      border-top: 3px solid #8c6239;
+      color: #fff3e0;
+      margin-top: 60px;
+      border-radius: 10px 10px 0 0;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 30px;
+      }
+      table, th, td {
+        font-size: 14px;
       }
     }
-    function updateStatus(button, newStatus) {
-      const row = button.closest('tr');
-      const statusCell = row.querySelector('.status-cell');
-      statusCell.textContent = newStatus;
-      const actionsCell = row.querySelector('.actions-cell');
-      actionsCell.innerHTML = '';
-    }
-  </script>
+  </style>
 </head>
 <body>
+
   <header>
-    <img align="left" src="logo.jpg" alt="Maid For You Logo"/>
-    <div>
-      <h1>MAID FOR YOU</h1>
-      <p>Employee Portal</p>
-    </div>
+    <img src="logo.jpg" alt="PawHaus Logo">
+    <h1>Employee Portal</h1>
   </header>
 
   <nav>
-    <a href="index.html#home">Home</a>
-    <a href="index.html#services">Services</a>
-    <a href="index.html#about">About</a>
-    <a href="index.html#contact">Contact</a>
-    <a href="index.html#booking">Booking</a>
-    <a href="employee.html">Employee Portal</a>
+    <a href="index.html">🏠 Home</a>
+    <a href="#login">🔐 Login</a>
+    <a href="#dashboard">📋 Dashboard</a>
+    <a href="#contact">📞 Contact Admin</a>
   </nav>
 
-  <div id="prompt-form" class="prompt">
-    <h2>Employee Login</h2>
-    <input type="text" id="employee-name" placeholder="Enter your name" required /><br>
-    <input type="password" id="password" placeholder="Enter password" required /><br>
-    <button onclick="unlockPortal()" class="button">Enter</button>
-  </div>
-
-  <div id="portal-content">
-    <section>
-      <h2>Welcome, <span id="employee-name-display"></span>!</h2>
-      <h3>📋 Available Jobs</h3>
-      <table>
-        <tr>
-          <th>Client</th>
-          <th>Service</th>
-          <th>Date</th>
-          <th>Location</th>
-          <th>Status</th>
-          <th>Payment</th>
-          <th>Action</th>
-        </tr>
-        <tr>
-          <td>Lance Nathaniel D Orlina</td>
-          <td>General Cleaning</td>
-          <td>June 3, 2025</td>
-          <td>Makati City</td>
-          <td class="status-cell">Available</td>
-          <td>PAID</td>
-          <td class="actions-cell">
-            <button style="background-color: #56AE57;" class="action-button" onclick="updateStatus(this, 'Accepted')">Accept</button>
-            <button style="background-color: #FF6961;" class="action-button" onclick="updateStatus(this, 'Declined')">Decline</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Frenzie Pagdilao</td>
-          <td>Nanny (Whole-Day)</td>
-          <td>June 4–5, 2025</td>
-          <td>Quezon City</td>
-          <td class="status-cell">Available</td>
-          <td>NOT PAID</td>
-          <td class="actions-cell">
-            <button style="background-color: #56AE57;" class="action-button" onclick="updateStatus(this, 'Accepted')">Accept</button>
-            <button style="background-color: #FF6961;" class="action-button" onclick="updateStatus(this, 'Declined')">Decline</button>
-          </td>
-        </tr>
-      </table>
-
-      <h3>🗓️ Weekly Schedule</h3>
-      <table>
-        <tr>
-          <th>Date</th>
-          <th>Assigned To</th>
-          <th>Service</th>
-          <th>Status</th>
-          <th>Payment</th>
-        </tr>
-        <tr>
-          <td>June 1, 2025</td>
-          <td>Chriselle Demerin</td>
-          <td>Deep Cleaning</td>
-          <td>Confirmed</td>
-          <td>PAID</td>
-        </tr>
-        <tr>
-          <td>June 2, 2025</td>
-          <td>Yuri Matute</td>
-          <td>Infant Care</td>
-          <td>Pending</td>
-          <td>NOT PAID</td>
-        </tr>
-      </table>
+  <main>
+    <!-- LOGIN SECTION -->
+    <section id="login" class="login-section">
+      <h2>Employee Login</h2>
+      <p>Please log in using your employee credentials.</p>
+      <input type="text" id="username" placeholder="Username" required><br>
+      <input type="password" id="password" placeholder="Password" required><br>
+      <button onclick="login()">Login</button>
     </section>
-  </div>
+
+    <!-- DASHBOARD SECTION -->
+    <section id="dashboard" class="dashboard" style="display:none;">
+      <h2>Welcome, <span id="employee-name"></span>!</h2>
+      <p>Below are your assigned tasks for today:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Job ID</th>
+            <th>Client Name</th>
+            <th>Service</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+        <tbody id="job-list">
+          <tr>
+            <td>001</td>
+            <td>Stef</td>
+            <td>Pet Grooming</td>
+            <td>Quezon City</td>
+            <td><span id="status-001">Pending</span></td>
+            <td><button onclick="updateStatus('001')">Mark Done</button></td>
+          </tr>
+          <tr>
+            <td>002</td>
+            <td>Aris</td>
+            <td>De-matting</td>
+            <td>Pasig City</td>
+            <td><span id="status-002">Pending</span></td>
+            <td><button onclick="updateStatus('002')">Mark Done</button></td>
+          </tr>
+          <tr>
+            <td>003</td>
+            <td>Marla</td>
+            <td>Senior Pet Care</td>
+            <td>Caloocan</td>
+            <td><span id="status-003">Pending</span></td>
+            <td><button onclick="updateStatus('003')">Mark Done</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 PawHaus Employee Portal. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function login() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+
+      if (user === "employee" && pass === "paw123") {
+        document.getElementById('login').style.display = "none";
+        document.getElementById('dashboard').style.display = "block";
+        document.getElementById('employee-name').textContent = user;
+        window.scrollTo(0, 0);
+      } else {
+        alert("Invalid credentials. Please try again.");
+      }
+    }
+
+    function logout() {
+      document.getElementById('dashboard').style.display = "none";
+      document.getElementById('login').style.display = "block";
+    }
+
+    function updateStatus(jobId) {
+      const statusCell = document.getElementById(`status-${jobId}`);
+      statusCell.textContent = "Completed ✅";
+      statusCell.style.color = "green";
+    }
+  </script>
 </body>
 </html>
