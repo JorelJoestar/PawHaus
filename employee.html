@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Employee Portal | PawHaus</title>
-  <link rel="icon" type="image/png" href="logo23.png">
+  <link rel="icon" type="image/png" href="test.png" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; padding: 0; }
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
       background-color: #f7ede2;
       color: #3e2a1a;
       background-image: url('background.jpg');
@@ -23,165 +19,196 @@
       overflow-x: hidden;
     }
 
+    /* header / nav / footer sizing constants */
+    :root {
+      --header-h: 90px;
+      --nav-h: 60px;
+      --footer-h: 56px;
+    }
+
     header {
+      height: var(--header-h);
       background-color: #b37a45;
-      padding: 35px;
+      padding: 12px 24px;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
       border-bottom: 3px solid #8c6239;
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1000;
+      z-index: 2000;
     }
 
     header img {
-      height: 70px;
+      height: 66px;
+      width: auto;
       border-radius: 10px;
       border: 2px solid #8c6239;
+      object-fit: cover;
     }
 
-    header h1 {
+    header .brand {
       color: #fff3e0;
       margin: 0;
-      font-size: 1.8em;
+      font-size: 1.6rem;
+      line-height: 1;
     }
 
+    /* top nav directly under header */
     nav {
+      height: var(--nav-h);
       background-color: #d1a46d;
-      padding: 12px 20px;
-      text-align: center;
-      border-bottom: 2px solid #a67c52;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
       position: fixed;
-      top: 90px;
+      top: var(--header-h);
       left: 0;
       right: 0;
-      z-index: 999;
+      border-bottom: 2px solid #a67c52;
+      z-index: 1500;
     }
 
     nav a {
-      margin: 10px 30px;
       color: #3e2a1a;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 6px 10px;
+      border-radius: 8px;
     }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+    nav a:hover { color: #fff3e0; background: rgba(0,0,0,0.05); }
 
+    /* main area */
     main {
-      margin-top: 170px;
-      margin-bottom: 100px;
+      /* spacing so content is not hidden behind header+nav */
+      padding-top: calc(var(--header-h) + var(--nav-h) + 20px);
+      padding-bottom: calc(var(--footer-h) + 20px);
       max-width: 1000px;
       margin-left: auto;
       margin-right: auto;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 60px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .panel {
+      background-color: rgba(255,255,255,0.95);
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 36px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+      margin-bottom: 28px;
     }
 
-    h2 {
-      color: #5a3c1c;
-      text-align: center;
+    h2 { color: #5a3c1c; margin-top: 0; text-align: center; }
+
+    /* login form layout */
+    .login-form {
+      max-width: 460px;
+      margin: 0 auto;
+      text-align: left;
     }
 
-    .login-section, .dashboard {
-      text-align: center;
-    }
-
+    label { display:block; font-weight:700; color:#5a3c1c; margin-bottom:6px; }
+    .input-row { margin-bottom: 14px; }
     input[type="text"], input[type="password"] {
-      padding: 8px;
-      margin: 8px 0;
       width: 100%;
-      max-width: 300px;
-      border: 1px solid #a67c52;
-      border-radius: 6px;
+      padding: 10px 12px;
+      border: 1px solid #cbb08a;
+      border-radius: 8px;
+      font-size: 14px;
     }
 
-    button {
+    .actions { display:flex; gap:12px; align-items:center; margin-top:8px; }
+    .btn {
       background-color: #8b5e3b;
-      color: white;
-      padding: 10px 20px;
+      color: #fff;
       border: none;
-      border-radius: 6px;
+      padding: 10px 16px;
+      border-radius: 8px;
       cursor: pointer;
-      font-weight: bold;
+      font-weight:700;
+    }
+    .btn:hover { background-color: #70492c; }
+
+    .btn-secondary {
+      background: #d1a46d;
+      color: #3e2a1a;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight:700;
+    }
+    .btn-secondary:hover { background:#b07b3f; color:#fff; }
+
+    .msg {
       margin-top: 10px;
+      color: #5a3c1c;
+      font-weight: 600;
     }
 
-    button:hover {
-      background-color: #70492c;
-    }
-
+    /* dashboard table */
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 30px;
-      background-color: #fffaf5;
-      border-radius: 10px;
+      margin-top: 20px;
+      background: #fffaf5;
+      border-radius: 8px;
       overflow: hidden;
     }
-
     th, td {
-      border: 1px solid #d1a46d;
+      text-align: left;
       padding: 12px;
-      text-align: center;
+      border-bottom: 1px solid #ead9ba;
+      font-size: 14px;
     }
+    th { background:#b37a45; color:#fff3e0; font-weight:700; }
+    tr:nth-child(even) td { background: #fbf3ea; }
 
-    th {
-      background-color: #b37a45;
-      color: #fff3e0;
+    .small-btn {
+      background:#56AE57; color:#fff; border:none; padding:6px 8px; border-radius:6px; cursor:pointer; font-weight:700;
     }
+    .small-btn.danger { background:#FF6961; }
 
-    tr:nth-child(even) {
-      background-color: #f9efe5;
-    }
+    .logout-btn { background:#d9534f; color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:700; margin-top:18px; }
+    .logout-btn:hover { background:#b13f3b; }
 
-    .logout-btn {
-      background-color: #d9534f;
-      margin-top: 30px;
-    }
-
-    .logout-btn:hover {
-      background-color: #b13f3b;
-    }
-
+    /* footer pinned to bottom */
     footer {
-      text-align: center;
-      padding: 15px 10px;
-      background-color: #b37a45;
-      border-top: 3px solid #8c6239;
-      color: #fff3e0;
+      height: var(--footer-h);
       position: fixed;
-      bottom: 0;
       left: 0;
       right: 0;
-      z-index: 1000;
-      border-radius: 10px 10px 0 0;
+      bottom: 0;
+      background: #b37a45;
+      color: #fff3e0;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      border-top: 3px solid #8c6239;
+      z-index: 1200;
     }
 
-    @media (max-width: 768px) {
-      main {
-        padding: 30px;
-      }
-      table, th, td {
-        font-size: 14px;
-      }
+    /* responsive tweaks */
+    @media (max-width: 860px) {
+      nav { gap: 12px; }
+      .login-form { max-width: 100%; }
+      th, td { font-size: 13px; }
+      header .brand { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <img src="test2.png" alt="PawHaus Logo">
-    <h1>Employee Portal</h1>
+    <img src="logo.jpg" alt="PawHaus Logo" />
+    <div class="brand">PawHaus — Employee Portal</div>
   </header>
 
-  <nav>
+  <nav aria-label="Main navigation">
     <a href="index.html">🏠 Home</a>
     <a href="#login">🔐 Login</a>
     <a href="#dashboard">📋 Dashboard</a>
@@ -189,129 +216,190 @@
   </nav>
 
   <main>
-    <!-- LOGIN SECTION -->
-    <section id="login" class="login-section">
-      <h2>Employee Login</h2>
-      <p>Please log in using your employee credentials.</p>
-      <input type="text" id="username" placeholder="Username" required><br>
-      <input type="password" id="password" placeholder="Password" required><br>
-      <button id="login-btn" type="button">Login</button>
+    <!-- LOGIN PANEL -->
+    <section id="login-panel" class="panel" aria-labelledby="login-heading">
+      <h2 id="login-heading">Employee Login</h2>
+
+      <!-- Using a real <form> but we'll handle submit in JS -->
+      <form id="loginForm" class="login-form" novalidate>
+        <div class="input-row">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username" required />
+        </div>
+
+        <div class="input-row">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required />
+        </div>
+
+        <div class="actions">
+          <!-- type="submit" is fine because we'll intercept submit; also adding a separate button to avoid accidental form reload -->
+          <button id="loginSubmit" class="btn" type="submit">Login</button>
+          <button id="demoBtn" class="btn-secondary" type="button">Demo Credentials</button>
+          <div id="loginMsg" class="msg" aria-live="polite"></div>
+        </div>
+      </form>
     </section>
 
-    <!-- DASHBOARD SECTION -->
-    <section id="dashboard" class="dashboard" style="display:none;">
-      <h2>Welcome, <span id="employee-name"></span>!</h2>
-      <p>Below are your assigned tasks for today:</p>
+    <!-- DASHBOARD PANEL (hidden until login) -->
+    <section id="dashboard-panel" class="panel" style="display:none;" aria-labelledby="dashboard-heading">
+      <h2 id="dashboard-heading">Welcome, <span id="employee-name">Employee</span>!</h2>
 
-      <table>
+      <h3 style="margin-top:8px;color:#5a3c1c;">📋 Available Jobs</h3>
+      <table aria-describedby="jobs-desc">
         <thead>
           <tr>
-            <th>Job ID</th>
-            <th>Client Name</th>
-            <th>Service</th>
-            <th>Location</th>
-            <th>Status</th>
-            <th>Update</th>
+            <th>Client</th><th>Service</th><th>Date</th><th>Location</th><th>Status</th><th>Action</th>
           </tr>
         </thead>
-        <tbody id="job-list">
+        <tbody id="jobs-body">
           <tr>
-            <td>001</td>
-            <td>Stef</td>
-            <td>Pet Grooming</td>
+            <td>Lance Nathaniel D Orlina</td>
+            <td>General Cleaning</td>
+            <td>June 3, 2025</td>
+            <td>Makati City</td>
+            <td class="status-cell" id="status-1">Available</td>
+            <td>
+              <button class="small-btn" data-job="1">Accept</button>
+              <button class="small-btn danger" data-job="1">Decline</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Frenzie Pagdilao</td>
+            <td>Nanny (Whole-Day)</td>
+            <td>June 4–5, 2025</td>
             <td>Quezon City</td>
-            <td><span id="status-001">Pending</span></td>
-            <td><button onclick="updateStatus('001')">Mark Done</button></td>
-          </tr>
-          <tr>
-            <td>002</td>
-            <td>Aris</td>
-            <td>De-matting</td>
-            <td>Pasig City</td>
-            <td><span id="status-002">Pending</span></td>
-            <td><button onclick="updateStatus('002')">Mark Done</button></td>
-          </tr>
-          <tr>
-            <td>003</td>
-            <td>Marla</td>
-            <td>Senior Pet Care</td>
-            <td>Caloocan</td>
-            <td><span id="status-003">Pending</span></td>
-            <td><button onclick="updateStatus('003')">Mark Done</button></td>
+            <td class="status-cell" id="status-2">Available</td>
+            <td>
+              <button class="small-btn" data-job="2">Accept</button>
+              <button class="small-btn danger" data-job="2">Decline</button>
+            </td>
           </tr>
         </tbody>
       </table>
 
-      <button class="logout-btn" onclick="logout()">Logout</button>
+      <h3 style="margin-top:20px;color:#5a3c1c;">🗓️ Weekly Schedule</h3>
+      <table>
+        <thead>
+          <tr><th>Date</th><th>Assigned To</th><th>Service</th><th>Status</th><th>Payment</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>June 1, 2025</td><td>Chriselle Demerin</td><td>Deep Cleaning</td><td>Confirmed</td><td>PAID</td></tr>
+          <tr><td>June 2, 2025</td><td>Yuri Matute</td><td>Infant Care</td><td>Pending</td><td>NOT PAID</td></tr>
+        </tbody>
+      </table>
+
+      <button id="logoutBtn" class="logout-btn" type="button">Logout</button>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 PawHaus Employee Portal. All rights reserved.</p>
+    <div>&copy; 2025 PawHaus Employee Portal. All rights reserved.</div>
   </footer>
 
   <script>
-      document.addEventListener('DOMContentLoaded', function () {
-    const loginBtn = document.getElementById('login-btn');
-    if (loginBtn) {
-      loginBtn.addEventListener('click', login);
-    }
+    (function () {
+      // Credentials used by the portal (unchanged)
+      const VALID_USER = 'employee';
+      const VALID_PASS = 'paw123';
 
-    const passwordField = document.getElementById('password');
-    const userField = document.getElementById('username');
-    [passwordField, userField].forEach(field => {
-      if (field) {
-        field.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            login();
-          }
-        });
+      // Cached elements
+      const form = document.getElementById('loginForm');
+      const userEl = document.getElementById('username');
+      const passEl = document.getElementById('password');
+      const msgEl = document.getElementById('loginMsg');
+      const dashboard = document.getElementById('dashboard-panel');
+      const loginPanel = document.getElementById('login-panel');
+      const employeeNameSpan = document.getElementById('employee-name');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const demoBtn = document.getElementById('demoBtn');
+
+      // Accept/Decline buttons in jobs table (event delegation)
+      const jobsBody = document.getElementById('jobs-body');
+
+      // Helper: show message
+      function showMsg(text, isError) {
+        msgEl.textContent = text;
+        msgEl.style.color = isError ? '#b13f3b' : '#3e2a1a';
       }
-    });
-  });
 
-  function login() {
-    const userEl = document.getElementById('username');
-    const passEl = document.getElementById('password');
+      // Perform login check
+      function handleLogin(evt) {
+        if (evt) evt.preventDefault(); // stop form submission
+        const user = (userEl.value || '').trim();
+        const pass = (passEl.value || '').trim();
 
-    const user = userEl ? userEl.value.trim() : '';
-    const pass = passEl ? passEl.value.trim() : '';
+        if (!user) { showMsg('Enter username'); userEl.focus(); return; }
+        if (!pass) { showMsg('Enter password'); passEl.focus(); return; }
 
-    if (!user) {
-      alert('Please enter your username.');
-      if (userEl) userEl.focus();
-      return;
-    }
-    if (!pass) {
-      alert('Please enter your password.');
-      if (passEl) passEl.focus();
-      return;
-    }
-    function login() {
-      const user = document.getElementById('username').value.trim();
-      const pass = document.getElementById('password').value.trim();
-
-      if (user === "LASTNAME" && pass === "paw123") {
-        document.getElementById('login').style.display = "none";
-        document.getElementById('dashboard').style.display = "block";
-        document.getElementById('employee-name').textContent = user;
-        window.scrollTo(0, 0);
-      } else {
-        alert("Invalid credentials. Please try again.");
+        // Credentials check
+        if (user === VALID_USER && pass === VALID_PASS) {
+          // success
+          showMsg('Login successful ✅', false);
+          // show dashboard
+          loginPanel.style.display = 'none';
+          dashboard.style.display = 'block';
+          employeeNameSpan.textContent = user;
+          // scroll to top of main
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          showMsg('Invalid credentials — please try again', true);
+        }
       }
-    }
 
-    function logout() {
-      document.getElementById('dashboard').style.display = "none";
-      document.getElementById('login').style.display = "block";
-    }
+      // Logout
+      function handleLogout() {
+        // clear fields and switch views
+        passEl.value = '';
+        userEl.value = '';
+        showMsg('');
+        dashboard.style.display = 'none';
+        loginPanel.style.display = 'block';
+        userEl.focus();
+      }
 
-    function updateStatus(jobId) {
-      const statusCell = document.getElementById(`status-${jobId}`);
-      statusCell.textContent = "Completed ✅";
-      statusCell.style.color = "green";
-    }
+      // Demo credentials button
+      demoBtn.addEventListener('click', function () {
+        userEl.value = VALID_USER;
+        passEl.value = VALID_PASS;
+        showMsg('Demo credentials filled. Click Login.', false);
+        userEl.focus();
+      });
+
+      // Wire form submit
+      form.addEventListener('submit', handleLogin);
+
+      // Wire logout
+      logoutBtn.addEventListener('click', handleLogout);
+
+      // Keyboard: Enter should submit form (handled by form submit)
+      // Job accept/decline actions (event delegation)
+      jobsBody.addEventListener('click', function (e) {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        const jobId = btn.dataset.job;
+        if (!jobId) return;
+        const row = btn.closest('tr');
+        const statusCell = row.querySelector('.status-cell');
+        if (btn.classList.contains('danger')) {
+          statusCell.textContent = 'Declined';
+          statusCell.style.color = '#b13f3b';
+        } else {
+          statusCell.textContent = 'Accepted';
+          statusCell.style.color = '#1a7f1a';
+        }
+        // remove action buttons after choice
+        const actionTd = btn.parentElement;
+        actionTd.innerHTML = '—';
+      });
+
+      // Allow pressing Enter in inputs to submit (form handles Enter by default)
+      // Focus the username on load
+      userEl.focus();
+
+      // Expose for debugging (optional)
+      window._pwdebug = { handleLogin, handleLogout };
+    })();
   </script>
 </body>
 </html>
