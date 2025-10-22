@@ -29,7 +29,7 @@
 
     header {
       background-color: #b37a45;
-      padding: 10px;
+      padding: 35px;
       display: flex;
       align-items: center;
       gap: 20px;
@@ -51,28 +51,30 @@
       color: #fff3e0;
       margin: 0;
     }
-
-    nav {
-      background-color: #d1a46d;
-      padding: 30px 20px;
-      text-align: center;
-      border-bottom: 2px solid #a67c52;
-      position: fixed;
-      top: 100px;
-      left: 0;
-      right: 0;
-      z-index: 999;
+ 
+    .top-buttons {
+      display: flex;
+      gap: 12px;
+      margin-left: 20px;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
-    nav a {
-      margin: 0 50px;
+    .top-buttons a {
+      background-color: #d1a46d;
       color: #3e2a1a;
       text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
       font-weight: bold;
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      display: inline-block;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    .top-buttons a:hover {
+      background-color: #8b5e3b;
+      color: #fff3e0;
     }
 
     .side-menu {
@@ -355,5 +357,6 @@
   
 </body>
 </html>
+
 
 
