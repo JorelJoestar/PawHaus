@@ -251,6 +251,43 @@
   </footer>
 
   <script>
+      document.addEventListener('DOMContentLoaded', function () {
+    const loginBtn = document.getElementById('login-btn');
+    if (loginBtn) {
+      loginBtn.addEventListener('click', login);
+    }
+
+    const passwordField = document.getElementById('password');
+    const userField = document.getElementById('username');
+    [passwordField, userField].forEach(field => {
+      if (field) {
+        field.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            login();
+          }
+        });
+      }
+    });
+  });
+
+  function login() {
+    const userEl = document.getElementById('username');
+    const passEl = document.getElementById('password');
+
+    const user = userEl ? userEl.value.trim() : '';
+    const pass = passEl ? passEl.value.trim() : '';
+
+    if (!user) {
+      alert('Please enter your username.');
+      if (userEl) userEl.focus();
+      return;
+    }
+    if (!pass) {
+      alert('Please enter your password.');
+      if (passEl) passEl.focus();
+      return;
+    }
     function login() {
       const user = document.getElementById('username').value.trim();
       const pass = document.getElementById('password').value.trim();
