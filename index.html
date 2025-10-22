@@ -7,25 +7,24 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="logo.jpg" href="test.png" />
   <style>
+     * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
       height: 100%;
       width: 100%;
       border-bottom: 1px solid #e3d3b4;
-      padding: 100px;
-      width: 100%;
-      max-width: 900px; /* controls readable width */
-      margin: 60px auto; /* centers horizontally */
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       background-color: #f7ede2;
       color: #3e2a1a;
       background-image: url('background.jpg');
       background-size: cover;
       background-attachment: fixed;
       background-repeat: no-repeat;
-
+      overflow-x: hidden; /* prevents right scroll */
+      margin: 0;
+      padding: 0;
     }
 
     header {
@@ -35,6 +34,11 @@
       align-items: center;
       gap: 20px;
       border-bottom: 3px solid #8c6239;
+      position: fixed; /* stays on top */
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
     }
 
     header img {
@@ -44,7 +48,7 @@
     }
 
     h1 {
-      color: #003399;
+      color: #fff3e0;
       margin: 0;
     }
 
@@ -53,6 +57,11 @@
       padding: 10px 20px;
       text-align: center;
       border-bottom: 2px solid #a67c52;
+      position: fixed;
+      top: 100px;
+      left: 0;
+      right: 0;
+      z-index: 999;
     }
 
     nav a {
@@ -66,16 +75,67 @@
       text-decoration: underline;
     }
 
+    .side-menu {
+      position: fixed;
+      top: 150px;
+      left: 0;
+      width: 200px;
+      background-color: #f2e2cc;
+      padding: 20px;
+      border-right: 2px solid #d1a46d;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+      height: calc(100vh - 150px);
+      overflow-y: auto;
+    }
+
+    .side-menu h3 {
+      margin-top: 0;
+      color: #5a3c1c;
+    }
+
+    .side-menu a {
+      display: block;
+      margin: 10px 0;
+      color: #5a3c1c;
+      text-decoration: none;
+    }
+
+    .side-menu a:hover {
+      text-decoration: underline;
+    }
+
+    .right-sidebar {
+      position: fixed;
+      right: 0;
+      top: 150px;
+      width: 350px;
+      background-color: #f2e2cc;
+      padding: 20px;
+      border-left: 2px solid #d1a46d;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+      font-size: 14px;
+      line-height: 1.5;
+      height: calc(100vh - 150px);
+      overflow-y: auto;
+    }
+
+    main {
+      margin-top: 200px; /* account for header + nav */
+      margin-left: 220px;
+      margin-right: 370px;
+    }
+
     section {
       border-bottom: 1px solid #e3d3b4;
       padding: 100px 100px;
-      margin-left: 220px;
-      margin-right: 270px;
       background-color: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       margin-top: 60px;
       margin-bottom: 60px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     section h2 {
@@ -96,44 +156,6 @@
       background-color: #70492c;
     }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #b37a45;
-      border-top: 3px solid #8c6239;
-      color: #fff3e0;
-
-    }
-
-    .side-menu {
-      position: absolute;
-      top: auto;
-      left: 0;
-      width: 200px;
-      background-color: #f2e2cc;
-      padding: 20px;
-      border-right: 2px solid #d1a46d;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
-      height: 100%;
-      min-height: 290vh;
-    }
-
-    .side-menu h3 {
-      margin-top: 0;
-      color: #003366;
-    }
-
-    .side-menu a {
-      display: block;
-      margin: 10px 0;
-      color: #5a3c1c;
-      text-decoration: none;
-    }
-
-    .side-menu a:hover {
-      text-decoration: underline;
-    }
-
     form input, form select {
       padding: 8px;
       margin-top: 5px;
@@ -146,65 +168,33 @@
       font-weight: bold;
     }
 
-    .right-sidebar {
-      position: absolute;
-      right: 0;
-      top: auto;
-      width: 350px;
-      height: 290vh;
-      background-color: #f2e2cc;
+    footer {
+      text-align: center;
       padding: 20px;
-      border-left: 2px solid #d1a46d;
-      box-shadow: -2px 0 5px rgba(0,0,0,0.05);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .right-sidebar h3 {
-      margin-top: 0;
-      color: #5a3c1c;
-      font-size: 16px;
-    }
-
-    .right-sidebar ul {
-      padding-left: 20px;
-      margin-bottom: 20px;
-    }
-
-    .right-sidebar li {
-      margin-bottom: 10px;
-    }
-
-    .right-sidebar blockquote {
-      margin: 0 0 20px;
-      padding-left: 10px;
-      border-left: 3px solid #a67c52;
-      font-style: italic;
-      color: #333;
-    }
-
-    .right-sidebar small {
-      display: block;
-      margin-top: 5px;
-      font-style: normal;
-      color: #6b5b4b;
+      background-color: #b37a45;
+      border-top: 3px solid #8c6239;
+      color: #fff3e0;
+      margin-left: 220px;
+      margin-right: 370px;
+      border-radius: 10px 10px 0 0;
     }
 
     @media (max-width: 1024px) {
-      .right-sidebar {
+      .side-menu, .right-sidebar {
         display: none;
+      }
+      main, footer {
+        margin: 0 20px;
+      }
     }
-      
+
     #payment-section {
       display: none;
-      padding: 40px 100px;
-      margin-left: 220px;
-      margin-right: 270px;
+      padding: 100px 100px;
       background-color: rgba(255,255,255,0.85);
       border-bottom: 1px solid #e3d3b4;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      
     }
   </style>
   <script>
@@ -365,6 +355,7 @@
   
 </body>
 </html>
+
 
 
 
