@@ -51,11 +51,11 @@
 
     nav {
       background-color: #d1a46d;
-      padding: 10px 20px;
+      padding: 12px 20px;
       text-align: center;
       border-bottom: 2px solid #a67c52;
       position: fixed;
-      top: 100px;
+      top: 90px;
       left: 0;
       right: 0;
       z-index: 999;
@@ -73,7 +73,7 @@
     }
 
     main {
-      margin-top: 180px;
+      margin-top: 170px;
       margin-bottom: 100px;
       max-width: 1000px;
       margin-left: auto;
@@ -255,7 +255,7 @@
       const user = document.getElementById('username').value.trim();
       const pass = document.getElementById('password').value.trim();
 
-      if (user === '' && pass === "paw123") {
+      if (user === !=='' && pass === "paw123") {
         document.getElementById('login').style.display = "none";
         document.getElementById('dashboard').style.display = "block";
         document.getElementById('employee-name').textContent = user;
