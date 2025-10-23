@@ -338,6 +338,19 @@
       </form>
     </section>
 
+<script>
+  function showPaymentSection(event) {
+    event.preventDefault();
+
+    document.getElementById('booking').style.display = 'none';
+    document.getElementById('payment-section').style.display = 'block';
+
+    document.getElementById('payment-section').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+</script>
+	  
     <section id="payment-section">
       <h2>Payment Section</h2>
       <p>Please proceed with your payment using one of the methods below:</p>
@@ -358,5 +371,3 @@
   </footer>
 </body>
 </html>
-
-
